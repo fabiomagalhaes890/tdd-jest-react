@@ -15,6 +15,6 @@ it('map([2,3], (item) => item) should return [2,3]', () => {
   expect(map([2,3], (item) => item)).to.be.deep.equal([2,3])
 })
 
-it('map([2,3], (item) => item + 1) should return item', () => {
+it('map([2,3], (item) => item + 1) should return [3,4]', () => {
   expect(map([2,3], (item) => item + 1)).to.be.deep.equal([3,4])
 })
