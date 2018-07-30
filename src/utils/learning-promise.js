@@ -14,17 +14,15 @@ class LearningPromise extends Component {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve('my app with promise async/ await')
-      }, 2000);
-      
+      }, 2000)
     })
   }
 
-  async componentDidMount() {
-      let result = await this.getTitle()
-      this.setState({
-        title: result
-      })
-
+  async componentDidMount () {
+    let result = await this.getTitle()
+    this.setState({
+      title: result
+    })
   }
 
   render () {
