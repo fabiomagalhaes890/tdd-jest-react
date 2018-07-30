@@ -1,7 +1,7 @@
 'use strict'
 
-import counters from './index'
-import { INCREMENT, DECREMENT, REMOVE_COUNTER, ADD_COUNTER, initialState } from './actions'
+import counters, { initialState } from './index'
+import { INCREMENT, DECREMENT, REMOVE_COUNTER, ADD_COUNTER } from './actions'
 import { expect } from 'chai'
 import deepFreeze from 'deep-freeze'
 
