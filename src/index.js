@@ -3,12 +3,16 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import { Provider } from 'react-redux'
 import App from './app'
+import CounterStore from './reducers/counter-store'
 
 const renderApp = (NextApp) => {
   render(
     <AppContainer>
-      <NextApp />
+      <Provider store={CounterStore}>
+        <NextApp />
+      </Provider>
     </AppContainer>,
     document.querySelector('[data-js="app"]')
   )
