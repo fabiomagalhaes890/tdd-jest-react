@@ -1,9 +1,12 @@
 'use strict'
 
+import { SET_VISIBILITY_FILTER } from './actions'
+import createReducer from '../create-reducer'
+
 export const initialState = 'SHOW_ALL'
 
-const visibilityFilter = (state = initialState, action) => {
-  return action.type === 'SET_VISIBILITY_FILTER' ? action.payload.filter : state
-}
+const visibilityFilter = createReducer(initialState, {
+  [SET_VISIBILITY_FILTER]: (state, action) => action.payload.filter
+})
 
 export default visibilityFilter
