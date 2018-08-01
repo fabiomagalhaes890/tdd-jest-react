@@ -3,39 +3,24 @@
 import { expect } from 'chai'
 import deepFreeze from 'deep-freeze'
 import adress from './index'
-import { UPDATE_ADRESS } from './actions'
+import { UPDATE_ADDRESS } from './actions'
 
 it('adress should be a function', () => {
   expect(adress).to.be.a('function')
 })
 
-it('should action UPDATE_ADRESS update adress ', () => {
+it('should action UPDATE_ADDRESS update adress ', () => {
   const before = deepFreeze({
-    endereco: {
-      adress: '',
-      city: '',
-      code: '',
-      district: '',
-      state: '',
-      status: 1,
-    }
+    adress: '',
+    city: '',
+    code: '',
+    district: '',
+    state: '',
+    status: 1,
   })
   const action = {
-    type: UPDATE_ADRESS,
+    type: UPDATE_ADDRESS,
     payload: {
-      endereco: {
-        adress: 'Rua Novo Horizonte	',
-        city: 'Maringá',
-        code: '87005-280',
-        district: 'Jardim Novo Horizonte',
-        state: 'PR',
-        status: 1,
-      }
-    }
-  }
-
-  const after = {
-    endereco: {
       adress: 'Rua Novo Horizonte	',
       city: 'Maringá',
       code: '87005-280',
@@ -43,6 +28,15 @@ it('should action UPDATE_ADRESS update adress ', () => {
       state: 'PR',
       status: 1,
     }
+  }
+
+  const after = {
+    adress: 'Rua Novo Horizonte	',
+    city: 'Maringá',
+    code: '87005-280',
+    district: 'Jardim Novo Horizonte',
+    state: 'PR',
+    status: 1,
   }
   expect(adress(before, action)).to.be.deep.equal(after)
 })

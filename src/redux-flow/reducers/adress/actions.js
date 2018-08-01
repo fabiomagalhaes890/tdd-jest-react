@@ -1,3 +1,3 @@
 'use strict'
 
-export const UPDATE_ADRESS = 'adress:UPDATE_ADRESS'
+export const UPDATE_ADDRESS = 'adress:UPDATE_ADDRESS'

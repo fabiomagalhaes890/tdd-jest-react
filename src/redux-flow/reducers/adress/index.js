@@ -1,21 +1,19 @@
 'use strict'
 
 import createReducer from '../create-reducer'
-import { UPDATE_ADRESS } from './actions'
+import { UPDATE_ADDRESS } from './actions'
 
 const initialState = {
-  endereco: {
-    adress: '',
-    city: '',
-    code: '',
-    district: '',
-    state: '',
-    status: 1,
-  }
+  address: '',
+  city: '',
+  code: '',
+  district: '',
+  state: '',
+  status: 1
 }
 
-const adress = createReducer(initialState, {
-  [UPDATE_ADRESS]: (state, action) => action.payload
+const address = createReducer(initialState, {
+  [UPDATE_ADDRESS]: (state, action) => action.payload
 })
 
-export default adress
+export default address

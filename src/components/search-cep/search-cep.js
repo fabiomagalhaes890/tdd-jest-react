@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-const SearchCep = ({ adress, city, code, district, state, handleSubmit, status, isFetching }) => (
+const SearchCep = ({ address, city, code, district, state, handleSubmit, status, isFetching }) => (
   <div>
     <form onSubmit={handleSubmit}>
       <input type='text' name='cep' />
@@ -26,7 +26,7 @@ const SearchCep = ({ adress, city, code, district, state, handleSubmit, status, 
         <tbody>
           <tr>
             <td>{code}</td>
-            <td>{adress}</td>
+            <td>{address}</td>
             <td>{district}</td>
             <td>{city}</td>
             <td>{state}</td>
@@ -34,7 +34,6 @@ const SearchCep = ({ adress, city, code, district, state, handleSubmit, status, 
         </tbody>
       </table>
     )}
-    
   </div>
 )
 

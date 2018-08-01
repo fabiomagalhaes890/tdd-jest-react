@@ -1,38 +1,40 @@
 'use strict'
 
 import React, { PureComponent } from 'react'
-import SearchCep from './search-cep'
-import axios from 'axios'
 import { connect } from 'react-redux'
+import axios from 'axios'
+import SearchCep from './search-cep'
+import { updateAddress } from '../../redux-flow/reducers/adress/action-creators'
 
 class SearchCepContainer extends PureComponent {
-  state = {
-    endereco: {
-      isFetching: false
-    }
-  }
+  state = { isFetching: false }
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    this.setState({isFetching: true})
-    const cep = e.target.cep.value
+    this.setState({ isFetching: true })
 
-    await axios.get('http://apps.widenet.com.br/busca-cep/api/cep.json?code='+ cep)
-      .then(response => { this.setState({ endereco: { ...response.data } }) })
-    
-    this.setState({isFetching: false})
+    const cep = e.target.cep.value
+    const response = await axios.get('http://apps.widenet.com.br/busca-cep/api/cep.json?code='+ cep)
+
+    setTimeout(() => {
+      this.setState({ isFetching: false })
+      this.props.dispatch(updateAddress(response.data))
+    }, 5000);
   }
 
   render () {
-    console.log(this.props)
     return (
-      <SearchCep {...this.state.endereco} handleSubmit={this.handleSubmit} />
+      <SearchCep
+        {...this.state}
+        {...this.props.address}
+        handleSubmit={this.handleSubmit}
+      />
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  endereco: state.endereco
-}
+const mapStateToProps = (state) => ({
+  address: state.address
+})
 
 export default connect(mapStateToProps)(SearchCepContainer)
