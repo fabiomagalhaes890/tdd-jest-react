@@ -2,34 +2,37 @@
 
 import React, { PureComponent } from 'react'
 import SearchCep from './search-cep'
-import ajax from '@fdaciuk/ajax'
+import axios from 'axios'
+import { connect } from 'react-redux'
 
 class SearchCepContainer extends PureComponent {
-  constructor () {
-    super()
-    this.state = {
-      endereco = {
-        adress: '',
-        city: '',
-        code: '',
-        district: '',
-        state: '',
-        status: 1
-      }
+  state = {
+    endereco: {
+      isFetching: false
     }
   }
 
-  async componentDidMount () {
-    const response = await ajax().get('http://apps.widenet.com.br/busca-cep/api/cep.json', { code: '06233-030' })
-    this.setState(response)
-    console.log(response)
+  handleSubmit = async (e) => {
+    e.preventDefault()
+    this.setState({isFetching: true})
+    const cep = e.target.cep.value
+
+    await axios.get('http://apps.widenet.com.br/busca-cep/api/cep.json?code='+ cep)
+      .then(response => { this.setState({ endereco: { ...response.data } }) })
+    
+    this.setState({isFetching: false})
   }
 
   render () {
+    console.log(this.props)
     return (
-      <SearchCep {...this.state.endereco} />
+      <SearchCep {...this.state.endereco} handleSubmit={this.handleSubmit} />
     )
   }
 }
 
-export default SearchCepContainer
+const mapStateToProps = (state) => {
+  endereco: state.endereco
+}
+
+export default connect(mapStateToProps)(SearchCepContainer)
